@@ -5,17 +5,47 @@
 
             .startbtn{
                 cursor:pointer;
-                background-color: blue;
-                color:white;
-                font-size: 50px;
-                width: 500;
-                border-radius: 3px;
-                align-self: center;
+                background-color: transparent;
+                color: cornflowerblue;
+                border-color: cornflowerblue;
+                font-size: 20px;
+                width: 300;
+                border-radius: 10px;
+                position: absolute;
+                margin: 0;
+                top: 48%;
+                left: 50%;
+                transform: translate(-50%, 50%);
+                border-width: 2%;
             }
 
             .startbtn:hover{
-                background-color: darkblue;
+                color: rgb(59, 119, 230);
+                border-color: rgb(59, 119, 230);
+                top: 48%;
             }
+
+            .returnbtn{
+                cursor:pointer;
+                background-color: transparent;
+                color:cornflowerblue;
+                border-color: cornflowerblue;
+                font-size: 20px;
+                width: 300;
+                border-radius: 10px;
+                position: absolute;
+                margin: 0;
+                top: 56%;
+                left: 50%;
+                transform: translate(-50%, 50%);
+                border-width: 2%;
+            }
+            .returnbtn:hover{
+                color: rgb(59, 119, 230);
+                border-color: rgb(59, 119, 230);
+                top: 56%;
+            }
+
         </style>
     </head>
     <body>
@@ -23,6 +53,14 @@
        <button class="startbtn">
          Start
        </button>
+       <button class="returnbtn" id="returnbutton">
+        Return to menu
+       </button>
     </body>
+<script>
+ document.getElementById("returnbutton").addEventListener("click", ()=>{
+    window.location.href = "../home.html";
+ })
+</script>
 
 </html>
