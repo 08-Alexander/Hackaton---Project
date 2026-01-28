@@ -10,21 +10,7 @@
         const feedbackEl = document.getElementById('feedback');
         const containerEl = document.getElementById('game-container');
 
-        function generateQuestion() {
-            // Skalar upp svårighetsgraden baserat på nivå
-            const maxNum = level * 5;
-            const a = Math.floor(Math.random() * maxNum) + 1;
-            const b = Math.floor(Math.random() * maxNum) + 1;
-            currentAnswer = a + b;
-            questionEl.innerText = `${a} + ${b}`;
-            inputEl.value = '';
-        }
-
-        inputEl.addEventListener('keyup', (e) => {
-            if (e.key === 'Enter') {
-                checkAnswer();
-            }
-        });
+       
 
         function checkAnswer() {
             const userAnswer = parseInt(inputEl.value);

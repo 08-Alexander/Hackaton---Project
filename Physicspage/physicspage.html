@@ -1,28 +1,74 @@
 <html>
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
-            h1 {text-align:center;}
+            h1 {font-size: 100px;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                text-align:center;}
 
             .startbtn{
                 cursor:pointer;
-                background-color: blue;
-                color:white;
-                font-size: 50px;
-                width: 500;
-                border-radius: 3px;
-                align-self: center;
+                background-color: transparent;
+                color: cornflowerblue;
+                border-color: cornflowerblue;
+                font-size: 20px;
+                width: 300;
+                border-radius: 10px;
+                position: absolute;
+                margin: 0;
+                top: 48%;
+                left: 50%;
+                transform: translate(-50%, 50%);
+                border-width: 2%;
             }
 
             .startbtn:hover{
-                background-color: darkblue;
+                color: rgb(59, 119, 230);
+                border-color: rgb(59, 119, 230);
+                top: 48%;
             }
+
+            .returnbtn{
+                cursor:pointer;
+                background-color: transparent;
+                color:cornflowerblue;
+                border-color: cornflowerblue;
+                font-size: 20px;
+                width: 300;
+                border-radius: 10px;
+                position: absolute;
+                margin: 0;
+                top: 56%;
+                left: 50%;
+                transform: translate(-50%, 50%);
+                border-width: 2%;
+            }
+            .returnbtn:hover{
+                color: rgb(59, 119, 230);
+                border-color: rgb(59, 119, 230);
+                top: 56%;
+            }
+
         </style>
     </head>
     <body>
-       <h1>Physics&#128300;</h1>
-       <button class="startbtn">
+       <h1>Physics &infin;</h1>
+       <button class="startbtn" id="startbutton">
          Start
        </button>
+       <button class="returnbtn" id="returnbutton">
+        Return to menu
+       </button>
     </body>
+<script>
+ document.getElementById("returnbutton").addEventListener("click", ()=>{
+    window.location.href = "../home.html";
+ })
+
+ document.getElementById("startbutton").addEventListener("click", ()=>{
+    window.location.href = "physicsquestions.html";
+ })
+</script>
 
 </html>
