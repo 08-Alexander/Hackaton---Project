@@ -3,88 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Dopamin-Plugget</title>
-    <style>
-        :root {
-            --primary: #4CAF50;
-            --bg: #f0f2f5;
-            --card: #ffffff;
-        }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-        }
-
-        #game-container {
-            background: var(--card);
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            text-align: center;
-            width: 350px;
-            transition: transform 0.2s;
-        }
-
-        .level-badge {
-            background: #ffd700;
-            color: #333;
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        h1 { color: #333; margin-top: 15px; }
-
-        #question {
-            font-size: 2.5rem;
-            margin: 20px 0;
-            color: #2c3e50;
-        }
-
-        input {
-            width: 80%;
-            padding: 10px;
-            font-size: 1.2rem;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            text-align: center;
-            outline: none;
-        }
-
-        input:focus { border-color: var(--primary); }
-
-        #feedback {
-            height: 20px;
-            margin-top: 15px;
-            font-weight: bold;
-        }
-
-        .streak-fire {
-            font-size: 1.5rem;
-            color: #ff4500;
-            margin-top: 10px;
-        }
-
-        /* Dopamin-animationer */
-        @keyframes pop {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .correct-hit { animation: pop 0.3s ease; border: 3px solid var(--primary) !important; }
-    </style>
 </head>
 <body>
-
+   
     <div id="game-container">
         <span class="level-badge">NIVÅ: <span id="level-display">1</span></span>
         <div class="streak-fire">🔥 Streak: <span id="streak-display">0</span></div>
@@ -92,79 +16,9 @@
         <input type="number" id="answer-input" placeholder="Svara här..." autofocus>
         <div id="feedback"></div>
     </div>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-
-    <script>
-        let level = 1;
-        let streak = 0;
-        let currentAnswer = 0;
-
-        const questionEl = document.getElementById('question');
-        const inputEl = document.getElementById('answer-input');
-        const levelEl = document.getElementById('level-display');
-        const streakEl = document.getElementById('streak-display');
-        const feedbackEl = document.getElementById('feedback');
-        const containerEl = document.getElementById('game-container');
-
-        function generateQuestion() {
-            // Skalar upp svårighetsgraden baserat på nivå
-            const maxNum = level * 5;
-            const a = Math.floor(Math.random() * maxNum) + 1;
-            const b = Math.floor(Math.random() * maxNum) + 1;
-            currentAnswer = a + b;
-            questionEl.innerText = `${a} + ${b}`;
-            inputEl.value = '';
-        }
-
-        inputEl.addEventListener('keyup', (e) => {
-            if (e.key === 'Enter') {
-                checkAnswer();
-            }
-        });
-
-        function checkAnswer() {
-            const userAnswer = parseInt(inputEl.value);
-
-            if (userAnswer === currentAnswer) {
-                // RÄTT SVAR - DOPAMIN KICK!
-                streak++;
-                if (streak % 3 === 0) level++; // Öka nivå var tredje rätt
-                
-                // Effekter
-                confetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.6 }
-                });
-                
-                feedbackEl.innerText = "Snyggt! +10 XP";
-                feedbackEl.style.color = "green";
-                containerEl.classList.add('correct-hit');
-                
-                setTimeout(() => {
-                    containerEl.classList.remove('correct-hit');
-                    updateUI();
-                    generateQuestion();
-                }, 500);
-
-            } else {
-                // FEL SVAR
-                streak = 0;
-                feedbackEl.innerText = "Försök igen!";
-                feedbackEl.style.color = "red";
-                inputEl.value = '';
-                updateUI();
-            }
-        }
-
-        function updateUI() {
-            levelEl.innerText = level;
-            streakEl.innerText = streak;
-        }
-
-        // Starta spelet
-        generateQuestion();
-    </script>
+    <script src="script.js"></script>
+ 
 </body>
 </html>
