@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 async function GetQuestions(){
     await getAIResponse();
+
+      
 }
 
 async function getAIResponse(amount = "1", subject = "matte", level = "1c") {
@@ -43,7 +45,15 @@ async function getAIResponse(amount = "1", subject = "matte", level = "1c") {
     const response = await puter.ai.chat(prompt,{
         model: 'gemini-2.5-flash-lite',
     }).then(response => {
-        test.innerText = response;
-        return response;
+        const AIresponse= response.message.content;
+        const QustaionAry = AIresponse.split("|||");
+        test.innerText = QustaionAry[0];
+       
+       
+      
+       
     });;
+    
+    
+ 
 }
