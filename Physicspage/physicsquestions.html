@@ -1,8 +1,41 @@
 <html>
 <head>
-
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="physicsquestions.css">
+    <title>StudyBuddy-Physics</title>
 </head>
 <body>
+    
+<a href="physicspage.html" class="back-link">Back</a>
 
+    <div id="game-container">
+        <div class="top-bar">
+            <div class="stat"><span class="label">LEVEL</span><span id="level-display">1</span></div>
+            <div class="stat"><span class="label">STREAK</span><span id="streak-display">0</span></div>
+        </div>
+        
+        <div class="progress-wrapper">
+            <div id="progress-fill"></div>
+        </div>
+
+        <div class="question-box">
+            <span id="ai-status">AI IS GENERATING...</span>
+            <h1 id="question-text"></h1>
+        </div>
+        
+        <div class="input-wrapper">
+            <input type="text" id="answer-input" placeholder="SVAR" autofocus>
+            <div id="feedback"></div>
+        </div>
+
+        <div id="ai-explanation-box" class="hidden">
+            <div class="ai-header">AI Analysis</div>
+            <p id="explanation-text"></p>
+            <button class="primary-btn" onclick="">Next question</button>
+        </div>
+
+        <button id="ask-ai-btn" class="secondary-btn hidden">Ask AI for answer</button>
+    </div>
 </body>
 </html>
