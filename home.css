@@ -1,0 +1,19 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   align-items: center;
+   padding: 100px;
+   margin: 100px;
+}
+
+#button1{
+   width: 50%;
+   margin-top: 20px;
+
+}
+
+#button2{
+   width: 50%;
+  margin-top: 20px;
+}
