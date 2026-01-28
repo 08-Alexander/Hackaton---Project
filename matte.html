@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="matte.css">
+    <title>StudyBuddy-Matte</title>
+</head>
+<body>
+    
+    <a href="index.html" class="back-link">Tilbaka</a>
+
+    <div id="game-container">
+        <div class="top-bar">
+            <div class="stat"><span class="label">NIVÅ</span><span id="level-display">1</span></div>
+            <div class="stat"><span class="label">STREAK</span><span id="streak-display">0</span></div>
+        </div>
+        
+        <div class="progress-wrapper">
+            <div id="progress-fill"></div>
+        </div>
+
+        <div class="question-box">
+            <span id="ai-status">AI GENERERAR...</span>
+            <h1 id="question-text"></h1>
+        </div>
+        
+        <div class="input-wrapper">
+            <input type="number" id="answer-input" placeholder="SVAR" autofocus>
+            <div id="feedback"></div>
+        </div>
+
+        <div id="ai-explanation-box" class="hidden">
+            <div class="ai-header">AI Analys</div>
+            <p id="explanation-text"></p>
+            <button class="primary-btn" onclick="generateNewAIQuestion()">Nästa fråga</button>
+        </div>
+
+        <button id="ask-ai-btn" class="secondary-btn hidden">Be ai förklara</button>
+    </div>
+    
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+</body>
+</html>
