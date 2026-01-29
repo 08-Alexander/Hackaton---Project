@@ -16,11 +16,11 @@
             const userAnswer = parseInt(inputEl.value);
 
             if (userAnswer === currentAnswer) {
-                // RÄTT SVAR - DOPAMIN KICK!
-                streak++;
-                if (streak % 3 === 0) level++; // Öka nivå var tredje rätt
                 
-                // Effekter
+                streak++;
+                if (streak % 3 === 0) level++; 
+                
+                
                 confetti({
                     particleCount: 100,
                     spread: 70,
@@ -38,7 +38,7 @@
                 }, 500);
 
             } else {
-                // FEL SVAR
+                
                 streak = 0;
                 feedbackEl.innerText = "Försök igen!";
                 feedbackEl.style.color = "red";
@@ -52,5 +52,5 @@
             streakEl.innerText = streak;
         }
 
-        // Starta spelet
+        
         generateQuestion();
