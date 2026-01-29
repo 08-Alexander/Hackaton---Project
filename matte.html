@@ -79,9 +79,7 @@
         }
 
         function checkAnswer(){
-            console.log(currentAnswers)
-            console.log(questionText.innerText)
-            if (currentAnswers.includes(questionText.innerText))
+            if (currentAnswers.includes(inputElement.value))
             {
                 console.log("correct")
             }
