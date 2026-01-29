@@ -22,5 +22,6 @@ Bara prototypen som vi fick från AI i början av uppgiften
 ### Install
 Här skriver ni vad vi i juryn behöver göra för att kunna köra ert program / app / webbsida
 
-Ni behöver aceptera terms of service och bevisa att ni inte är en bot, också svara på frågorna som webbsida ger er
+Ni behöver aceptera terms of service och bevisa att ni inte är en bot, också svara på frågorna som webbsida ger er.
+Också va bereda på att det kan ta en stund innan du får frågan, tar max runt 2 minuter med det är oftast inte så långsamt. 
 
