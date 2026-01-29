@@ -1,6 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", async function() {
-    await getAIResponse("2", "matte", "1c");
+    await getAIResponse("2", "engelska", "1");
 });
 
 async function GetQuestions(){
@@ -10,39 +10,33 @@ async function GetQuestions(){
 async function getAIResponse(amount = "1", subject = "matte", level = "1c") {
     const test = document.getElementById('test-text');
     let prompt = `
-            Generera ${amount} matematikuppgifter på ${subject} ${level} (svenskt gymnasium).
+        Generate ${amount} ${subject}tasks at ${subject} ${level} level (Swedish high school).
 
-            Regler:
-            - Varje uppgift ska vara unik.
-            - Anpassad för ${subject} ${level}.
-            - Returnera ALLT som en enda text utan extra kommentarer.
-            - Använd EXAKTA separatorer enligt nedan.
+        Rules:
+        - Each task should be unique.
+        - Adapted for ${subject} ${level}.
+        - Return EVERYTHING as a single text without extra comments.
+        - Use EXACT separators as below.
 
+        Separators:
+        - Between TASK / ANSWER / EXPLANATION: :::
+        - Between DIFFERENT TASKS: |||
 
-            Separatorer:
-            - Mellan UPPGIFT / SVAR / FÖRKLARING: :::
-            - Mellan OLIKA UPPGIFTER: |||
+        FORMAT (EXACT):
+        <task>:::<answer>:::<short explanation>|||<task>:::<answer>:::<short explanation>
 
+        Units and prefixes:
+        - If the answer contains unit or SI prefix, ALL correct spellings should be listed.
+        - Separate multiple correct answers with commas (,).
 
-            FORMAT (EXAKT):
-            <uppgift>:::<svar>:::<kort förklaring>|||<uppgift>:::<svar>:::<kort förklaring>
-
-
-            Enheter och prefix:
-            - Om svaret innehåller enhet eller SI-prefix ska ALLA korrekta skrivsätt listas.
-            - Separera flera korrekta svar med komma (,).
-
-
-            Viktigt:
-            - Använd INTE ::: eller ||| någon annanstans än som separatorer.
-            - Ingen markdown, inga rubriker, inga emojis.
-            - Varje förklaring ska vara 1–3 meningar.
+        Important:
+        - DO NOT use ::: or ||| anywhere other than as separators.
+        - No markdown, no headings, no emojis.
+        - Each explanation should be 1–3 sentences.
     `;
 
-    test
-    const response = await puter.ai.chat(prompt,{
-        model: 'gemini-2.5-flash-lite',
-    }).then(response => {
+    const response = await puter.ai.chat(prompt,
+    ).then(response => {
         test.innerText = response;
         return response;
     });;
