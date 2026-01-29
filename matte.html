@@ -26,7 +26,7 @@
         </div>
         
         <div class="input-wrapper">
-            <input id="answer-input" placeholder="SVAR" autofocus>
+            <input id="answer-input" placeholder="SVAR" autofocus >
             <button onclick="checkAnswer()">Guess</button>
             <div id="feedback"></div>
         </div>
@@ -44,6 +44,8 @@
         const answerText = document.getElementById('answer-text');
         const explanationText = document.getElementById('explanation-text');
         const inputElement = document.getElementById('answer-input');
+        const aiExplanationBox = document.getElementById('ai-explanation-box');
+        const streakDisplay = document.getElementById("streak-display");
 
         let questions = [""];
         let questionIndex = -1;
@@ -53,7 +55,7 @@
         let currentExplanation = "";
 
         document.addEventListener("DOMContentLoaded", async () => {
-                await GetNewQuestions("1", "matte", "1c");
+                await GetNewQuestions("5", "matte", "1c");
         });
 
         async function GetNewQuestions(amount = "2", subject = "matte", level = "1c"){
@@ -67,6 +69,7 @@
         }
 
         async function GetNextQuestion() {
+            aiExplanationBox.setAttribute("class", "hidden");
             questionIndex++;
 
             let questionParts = questions[questionIndex].split(":::");
@@ -90,14 +93,17 @@
             console.log(answerNoSpaces);
             if (answerNoSpaces.includes(inputElement.value.replace(/\s/g, '')))
             {
-                console.log("sda");
-
+                console.log("correct");
+                streakDisplay.innerText = (parseInt(streakDisplay.innerText) + 1).toString();
             }
             else{
-                console.log("incorect")
+                console.log("incorrect")
+                streakDisplay.innerText = "0";
             }
+            inputElement.value = "";
+            aiExplanationBox.removeAttribute("class");
             //answerText.innerText = currentAnswers[0];
-            //explanationText.innerText = currentExplanation;
+            explanationText.innerText = currentExplanation;
         }
 
         async function getAIResponse(amount = "1", subject = "matte", level = "1c") {
