@@ -27,27 +27,117 @@
         </div>
         
         <div class="input-wrapper">
-            <input type="text" id="answer-input" placeholder="SVAR" autofocus>
+            <input id="answer-input" placeholder="SVAR" autofocus>
+            <button onclick="checkAnswer()">Guess</button>
             <div id="feedback"></div>
         </div>
 
         <div id="ai-explanation-box" class="hidden">
             <div class="ai-header">AI Analys</div>
             <p id="explanation-text"></p>
-            <button class="primary-btn" onclick="">Nästa fråga</button>
+            <button class="primary-btn" onclick="GetNextQuestion()">Nästa fråga</button>
         </div>
 
-        <button id="ask-ai-btn" class="secondary-btn hidden">Fråga AI för svar</button>
+        <button id="ask-ai-btn" class="secondary-btn hidden">Be ai förklara</button>
     </div>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
-<script> 
-async function askGemini() {
+    <script>
+        const questionText = document.getElementById('question-text');
+        const answerText = document.getElementById('answer-text');
+        const explanationText = document.getElementById('explanation-text');
+        const inputElement = document.getElementById('answer-input');
 
-        puter.ai.chat(prompt)
-        .then(response => {
-           document.getElementById('response').innerText = response;
+        let questions = [""];
+        let questionIndex = -1;
+
+        let currentQuestion = "";
+        let currentAnswers = [];
+        let currentExplanation = "";
+
+        document.addEventListener("DOMContentLoaded", async () => {
+                await GetNewQuestions("1", "fysik", "1");
         });
+
+        async function GetNewQuestions(amount = "2", subject = "fysik", level = "1"){
+            questionIndex = -1;
+            const newQuestions = await getAIResponse(amount, subject, level);
+            questions.length = 0;
+            newQuestions.map((element) => {
+                questions.push(element);
+            })
+            GetNextQuestion()
+        }
+
+        async function GetNextQuestion() {
+            questionIndex++;
+
+            let questionParts = questions[questionIndex].split(":::");
+            
+            currentQuestion = questionParts[0];
+            currentAnswers = questionParts[1].split(",");
+            currentExplanation = questionParts[2];
+
+            questionText.innerText = currentQuestion;
+        }
+
+        function checkAnswer(){
+            console.log(currentAnswers)
+            console.log(inputElement.value)
+
+            let answerNoSpaces = [];
+            currentAnswers.map((element)=>
+            {
+                answerNoSpaces.push(element.replace(/\s/g, ''))
+            });
+            console.log(answerNoSpaces);
+            if (answerNoSpaces.includes(inputElement.value.replace(/\s/g, '')))
+            {
+                console.log("sda");
+
+            }
+            else{
+                console.log("incorect")
+            }
+            //answerText.innerText = currentAnswers[0];
+            //explanationText.innerText = currentExplanation;
+        }
+
+        async function getAIResponse(amount = "1", subject = "fysik", level = "1") {
+        let prompt = `
+            Generate ${amount} ${subject}tasks at ${subject} ${level} level (Swedish high school).
+
+            Rules:
+            - Each task should be unique.
+            - Adapted for ${subject} ${level}.
+            - Return EVERYTHING as a single text without extra comments.
+            - Use EXACT separators as below.
+
+            Separators:
+            - Between TASK / ANSWER / EXPLANATION: :::
+            - Between DIFFERENT TASKS: |||
+
+            FORMAT (EXACT):
+            <task>:::<answer>:::<short explanation>|||<task>:::<answer>:::<short explanation>
+
+            Units and prefixes:
+            - If the answer contains unit or SI prefix, ALL correct spellings should be listed.
+            - Separate multiple correct answers with commas (,).
+
+            Important:
+            - DO NOT use ::: or ||| anywhere other than as separators.
+            - No markdown, no headings, no emojis.
+            - Each explanation should be 1–3 sentences.
+            - No decimals.
+        `;
+
+        try {
+            const response = await puter.ai.chat(prompt);
+            const AIresponse = response.message.content;
+            
+            return AIresponse.split("|||"); 
+        } catch (error) {
+            console.error("AI Fetch failed:", error);
+            return [];
+        }
     }
-        </script>
+    </script>
 </html>
