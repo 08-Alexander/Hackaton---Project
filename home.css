@@ -1,27 +1,62 @@
-body{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+:root {
+   --black: #000000;
+   --white: #fffacd;
+   --blue: #007bff;
+}
+body {
+   background-color: var(--white);
+   height: 100vh;
+   display: flex;
+   justify-content: center;
    align-items: center;
-   padding: 100px;
-   margin: 100px;
+   margin: 0;
+}
+.card-container {
+   background: rgb(255, 255, 255);
+   padding: 5rem 3rem;
+   border: 2px solid var(--black);
+   box-shadow: 10px 10px 0 var(--black);
+   text-align: center;
+   max-width: 450px;
+   position: relative;
 }
 
-#button1{
-   width: 500px;
-   margin-top: 20px;
-   font-family: Arial, Helvetica, sans-serif;
-   font-size: large;
-   padding-left: 10px;
-   
+h1 {
+   color: var(--black);
+   font-weight: 800;
+   margin-bottom: 2rem;
+   border-bottom: 3px var(--black);
+   display: inline-block;
+   padding-bottom: 15px;  
+}
+.custom-btn {
+   width: 100%;
+   padding: 10px;
+   font-weight: bold;
 
+   color: black;
+   background: white;
+   border:2px solid black;
+   border-radius: 0;
+
+   margin-bottom: 15px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 10px;
+   cursor: pointer;
 }
 
-#button2{
-   width: 500px;
-    margin-top: 20px;
-   font-family: Arial, Helvetica, sans-serif;
-   font-size: large;
-   padding-left: 10px;
+.custom-btn:hover {
+   background: black;
+   color: white;
+   transform: translate(-4px, -4px);
+   box-shadow: 6px 6pxz rgba (0, 0, 0, 0.2);
+} 
+.custom-btn:active{
+   transform: translate(0, 0);
+   box-shadow: none;
 }
-
+svg{
+   stroke-width: 5px;
+}

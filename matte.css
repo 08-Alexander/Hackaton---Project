@@ -5,7 +5,6 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg);
             display: flex;
             justify-content: center;
@@ -26,8 +25,8 @@
         }
 
         .level-badge {
-            background: #ffd700;
-            color: #333;
+            background: #ffd900;
+            color: #000000;
             padding: 5px 15px;
             border-radius: 50px;
             font-weight: bold;
@@ -98,13 +97,13 @@
             top: 30px;
             left: 30px;
             text-decoration: none;
-            color: #666;
+            color: #5b5b5b;
             font-weight: 500;
             font-size: 0.9rem;
         }
 
         #game-container {
-          background:white;
+          background:rgb(255, 255, 255);
           width: 400px;
           padding: 40px;
           border: 1.5px solid var(--border-color);
@@ -123,11 +122,11 @@
             letter-spacing: 0.05em;
         }
 
-        .stat .label {color: #888; margin-right: 5px;}
+        .stat .label {color: #898989; margin-right: 5px;}
 
         .progress-wrapper {
             height: 5px;
-            background: #eee;
+            background: #ffffff;
             margin-bottom: 40px;
         }
 
@@ -222,4 +221,4 @@
 
         .hidden { display: none; }
 
-        .correct-hit { border-color: var(--success) !importan
+        .correct-hit { border-color: var(--success) !important; }
