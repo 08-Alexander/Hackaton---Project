@@ -47,6 +47,7 @@
         const inputElement = document.getElementById('answer-input');
         const aiExplanationBox = document.getElementById('ai-explanation-box');
         const streakDisplay = document.getElementById("streak-display");
+
         let questions = [""];
         let questionIndex = -1;
 
@@ -55,7 +56,7 @@
         let currentExplanation = "";
 
         document.addEventListener("DOMContentLoaded", async () => {
-                await GetNewQuestions("1", "fysik", "1");
+                await GetNewQuestions("10", "fysik", "1");
         });
 
         async function GetNewQuestions(amount = "2", subject = "fysik", level = "1"){
@@ -69,6 +70,7 @@
         }
 
         async function GetNextQuestion() {
+            aiExplanationBox.setAttribute("class", "hidden");
             questionIndex++;
 
             let questionParts = questions[questionIndex].split(":::");
