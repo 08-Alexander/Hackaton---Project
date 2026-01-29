@@ -1,8 +1,10 @@
 <html>
 <head>
+    <script src="https://js.puter.com/v2/"></script>
     <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="physicsquestions.css">
+<link rel="stylesheet" href="physicsquestions.js">
     <title>StudyBuddy-Physics</title>
 </head>
 <body>
@@ -39,4 +41,13 @@
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+<script> 
+async function askGemini() {
+
+        puter.ai.chat(prompt)
+        .then(response => {
+           document.getElementById('response').innerText = response;
+        });
+    }
+        </script>
 </html>
