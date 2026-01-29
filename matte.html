@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="matte.css">
     <title>StudyBuddy-Matte</title>
     <script src="https://js.puter.com/v2/"></script>
-    </script>
 </head>
 <body>
     <a href="index.html" class="back-link">Tilbaka</a>
@@ -27,7 +26,7 @@
         </div>
         
         <div class="input-wrapper">
-            <input type="number" id="answer-input" placeholder="SVAR" autofocus>
+            <input id="answer-input" placeholder="SVAR" autofocus>
             <button onclick="checkAnswer()">Guess</button>
             <div id="feedback"></div>
         </div>
@@ -40,9 +39,10 @@
 
         <button id="ask-ai-btn" class="secondary-btn hidden">Be ai förklara</button>
     </div>
-    
     <script>
         const questionText = document.getElementById('question-text');
+        const answerText = document.getElementById('answer-text');
+        const explanationText = document.getElementById('explanation-text');
         const inputElement = document.getElementById('answer-input');
 
         let questions = [""];
@@ -80,14 +80,24 @@
 
         function checkAnswer(){
             console.log(currentAnswers)
-            console.log(questionText.innerText)
-            if (currentAnswers.includes(questionText.innerText))
+            console.log(inputElement.value)
+
+            let answerNoSpaces = [];
+            currentAnswers.map((element)=>
             {
-                console.log("correct")
+                answerNoSpaces.push(element.replace(/\s/g, ''))
+            });
+            console.log(answerNoSpaces);
+            if (answerNoSpaces.includes(inputElement.value.replace(/\s/g, '')))
+            {
+                console.log("sda");
+
             }
             else{
                 console.log("incorect")
             }
+            //answerText.innerText = currentAnswers[0];
+            //explanationText.innerText = currentExplanation;
         }
 
         async function getAIResponse(amount = "1", subject = "matte", level = "1c") {
@@ -128,6 +138,5 @@
         }
     }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
 </body>
 </html>
