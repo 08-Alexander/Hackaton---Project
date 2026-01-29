@@ -25,3 +25,4 @@ Här skriver ni vad vi i juryn behöver göra för att kunna köra ert program /
 Ni behöver aceptera terms of service och bevisa att ni inte är en bot, också svara på frågorna som webbsida ger er.
 Också va bereda på att det kan ta en stund innan du får frågan, tar max runt 2 minuter med det är oftast inte så långsamt. 
 
+<img width="950" height="442" alt="image" src="https://github.com/user-attachments/assets/08988306-7172-498e-8e94-b783816113c6" />
