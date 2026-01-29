@@ -41,11 +41,12 @@
         <button id="ask-ai-btn" class="secondary-btn hidden">Be ai förklara</button>
     </div>
     <script>
-        const questionText = document.getElementById('question-text');
+       const questionText = document.getElementById('question-text');
         const answerText = document.getElementById('answer-text');
         const explanationText = document.getElementById('explanation-text');
         const inputElement = document.getElementById('answer-input');
-
+        const aiExplanationBox = document.getElementById('ai-explanation-box');
+        const streakDisplay = document.getElementById("streak-display");
         let questions = [""];
         let questionIndex = -1;
 
