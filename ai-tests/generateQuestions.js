@@ -1,16 +1,32 @@
-
 document.addEventListener("DOMContentLoaded", async function() {
-    await getAIResponse("2", "engelska", "1");
+    GetNextQuestions();
 });
 
-async function GetQuestions(){
-    await getAIResponse();
+function displayQuestion() {
+    const questionText = document.getElementById('question-text');
+    if (!questionText || !questions[questionIndex]) return;
 
-      
+    let parts = questions[questionIndex].split(":::");
+    
+    currentQuestion = parts[0];
+    currentAnswers = parts[1].split(",");
+    currentExplanation = parts[2];
+
+    questionText.innerText = currentQuestion;
+}
+
+async function GetNextQuestion(amount = "2", subject = "matte", level = "1c") {
+    questionIndex++;
+
+    if (questionIndex >= questions.length) {
+        const newQuestions = await getAIResponse(amount, subject, level);
+        questions = questions.concat(newQuestions);
+    }
+
+    displayQuestion();
 }
 
 async function getAIResponse(amount = "1", subject = "matte", level = "1c") {
-    const test = document.getElementById('test-text');
     let prompt = `
         Generate ${amount} ${subject}tasks at ${subject} ${level} level (Swedish high school).
 
@@ -37,14 +53,13 @@ async function getAIResponse(amount = "1", subject = "matte", level = "1c") {
         - Each explanation should be 1–3 sentences.
     `;
 
-    const response = await puter.ai.chat(prompt,{
-    }).then(response => {
-        const AIresponse= response.message.content;
-        const QustaionAry = AIresponse.split("|||");
-        test.innerText = QustaionAry[0];
-       
-    });;
-    
-    
- 
+    try {
+        const response = await puter.ai.chat(prompt);
+        const AIresponse = response.message.content;
+        
+        return AIresponse.split("|||"); 
+    } catch (error) {
+        console.error("AI Fetch failed:", error);
+        return [];
+    }
 }
