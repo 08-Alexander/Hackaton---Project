@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 async function GetQuestions(){
     await getAIResponse();
+
+      
 }
 
 async function getAIResponse(amount = "1", subject = "matte", level = "1c") {
@@ -35,9 +37,14 @@ async function getAIResponse(amount = "1", subject = "matte", level = "1c") {
         - Each explanation should be 1–3 sentences.
     `;
 
-    const response = await puter.ai.chat(prompt,
-    ).then(response => {
-        test.innerText = response;
-        return response;
+    const response = await puter.ai.chat(prompt,{
+    }).then(response => {
+        const AIresponse= response.message.content;
+        const QustaionAry = AIresponse.split("|||");
+        test.innerText = QustaionAry[0];
+       
     });;
+    
+    
+ 
 }
