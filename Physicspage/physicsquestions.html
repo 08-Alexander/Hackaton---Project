@@ -91,14 +91,17 @@
             console.log(answerNoSpaces);
             if (answerNoSpaces.includes(inputElement.value.replace(/\s/g, '')))
             {
-                console.log("sda");
-
+                console.log("correct");
+                streakDisplay.innerText = (parseInt(streakDisplay.innerText) + 1).toString();
             }
             else{
-                console.log("incorect")
+                console.log("incorect");
+                streakDisplay.innerText = "0";
             }
+             inputElement.value = "";
+            aiExplanationBox.removeAttribute("class");
             //answerText.innerText = currentAnswers[0];
-            //explanationText.innerText = currentExplanation;
+            explanationText.innerText = currentExplanation;
         }
 
         async function getAIResponse(amount = "1", subject = "fysik", level = "1") {
